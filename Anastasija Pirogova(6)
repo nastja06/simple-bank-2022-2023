@@ -1,0 +1,16 @@
+import datetime
+import random
+
+class Account:
+    def __init__(self, balance):
+        self.balance = balance
+        self.date_created = datetime.datetime.now()
+
+        # ja izveidošanas datums ir 1. aprīlis, pievienojam nejaušu naudas apmēru
+        if self.date_created.month == 4 and self.date_created.day == 1:
+            self.generate_prize()
+
+    def generate_prize(self):
+        # pievienojam nejaušu naudas apmēru diapazonā no 1 līdz 100
+        prize = random.randint(1, 100)
+        self.balance += prize
