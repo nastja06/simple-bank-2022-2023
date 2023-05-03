@@ -1,0 +1,41 @@
+class Customer(Human):
+    # ...
+
+    def modify_customer(self):
+        # iegūstam jaunos datus no lietotāja
+        new_name = input("Ievadiet jauno vārdu: ")
+        new_surname = input("Ievadiet jauno uzvārdu: ")
+        new_email = input("Ievadiet jauno e-pastu: ")
+
+        # atjaunojam klienta atribūtus
+        self.name = new_name
+        self.surname = new_surname
+        self.email = new_email
+
+        # atjaunojam CSV failu ar jauno informāciju
+        customers = self.get_all_customers()
+        with open('customers.csv', mode='w', newline='') as csv_file:
+            fieldnames = ['name', 'surname', 'email', 'datetime_created', 'balance']
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+
+            writer.writeheader()
+            for customer in customers:
+                if customer.email == self.email:
+                    writer.writerow({
+                        'name': self.name,
+                        'surname': self.surname,
+                        'email': self.email,
+                        'datetime_created': self.datetime_created.strftime,
+                        'balance': self.balance
+                    })
+                else:
+                    writer.writerow({
+                        'name': customer.name,
+                        'surname': customer.surname,
+                        'email': customer.email,
+                        'datetime_created': customer.datetime_created.strftime,
+                        'balance': customer.balance
+                    })
+
+        # atjaunojam CSV failu ar jauno informāciju
+        create_customer_csv()
