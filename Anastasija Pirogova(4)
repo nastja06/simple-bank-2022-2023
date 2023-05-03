@@ -1,0 +1,12 @@
+import csv
+
+def display_customer_csv(filename):
+    with open(filename, mode='r') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        for row in csv_reader:
+            customer = Customer(
+                row['name'], row['surname'], row['email'],
+                datetime.datetime.strptime(row['datetime_created']),
+                float(row['balance'])
+            )
+            print(customer)
