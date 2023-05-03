@@ -1,0 +1,17 @@
+import csv
+
+def write_customers_to_csv(customers, filename):
+    with open(filename, mode='w', newline='') as csv_file:
+        fieldnames = ['name', 'surname', 'email', 'datetime_created', 'balance']
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+
+        writer.writeheader()
+
+        for customer in customers:
+            writer.writerow({
+                'name': customer.name,
+                'surname': customer.surname,
+                'email': customer.email,
+                'datetime_created': customer.datetime_created,
+                'balance': customer.balance
+            })
