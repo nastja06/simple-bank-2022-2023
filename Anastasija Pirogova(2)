@@ -1,0 +1,24 @@
+import datetime
+
+class Human:
+    def __init__(self, name, surname, email):
+        self.name = name
+        self.surname = surname
+        self.email = email
+        self.datetime_created = datetime.datetime.now()
+
+class Customer(Human):
+    def __init__(self, name, surname, email, balance):
+        super().__init__(name, surname, email)
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+
+    def withdraw(self, amount):
+        self.balance -= amount
+
+    def calculate_percentages(self, years):
+        interest_rate = 0.005  # 0.5% interest rate per year
+        interest = self.balance * interest_rate * years
+        return interest
